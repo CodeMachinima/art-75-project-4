@@ -125,8 +125,8 @@ void drawHeader() {
   fill(220);
   text("Finish the sentence before time runs out.", 42, 70);
 
-  drawHealthBar(40, 200, 320, 26, playerHP, playerMaxHP, color(80, 220, 120), "Hero");
-  drawHealthBar(width - 360, 400, 320, 26, enemyHP, enemyMaxHP, color(255, 120, 120), "Enemy");
+  drawHealthBar(40, 150, 320, 26, playerHP, playerMaxHP, color(80, 220, 120), "Hero");
+  drawHealthBar(width - 360, 150, 320, 26, enemyHP, enemyMaxHP, color(255, 120, 120), "Enemy");
 
   drawTimer(width/2 - 140, 30, 280, 54);
 }
