@@ -51,6 +51,9 @@ void draw() {
     introScreen();
   }
   else if (gameScreen == 1){
+    choosingAttackScreen();
+  }
+  else if (gameScreen == 2){
     fightScreen();
   }
 }
@@ -93,6 +96,16 @@ void fightScreen() {
 
   popMatrix();
 }
+
+
+
+
+// -------------------------
+// --------VISUALS----------
+// -------------------------
+
+
+
 
 void drawBackground() {
   for (int y = 0; y < height; y++) {
@@ -268,6 +281,22 @@ void drawEndOverlay() {
   textSize(22);
   text("Press ENTER to play again", width/2, height/2 + 70);
 }
+
+
+
+
+
+
+
+
+// ------------------------------
+// --------HELPER STUFF----------
+// ------------------------------
+
+
+
+
+
 
 void keyPressed() {
   if (key == ENTER || key == RETURN) {
