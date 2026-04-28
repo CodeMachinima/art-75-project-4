@@ -32,7 +32,7 @@ PImage enemyDamage;
 void setup() {
   size(1280, 800);
   smooth(4);
-  frameRate(120);
+  frameRate(60);
   font = createFont("Arial", 28);
   textFont(font);
   initializeSentences();
@@ -177,27 +177,13 @@ void drawCharacters() {
 void drawHero(float x, float y) {
   pushMatrix();
   translate(x,y);
-  //fill(70, 150, 255);
-  //rect(-45, 40, 90, 120, 20);
-  //fill(255, 220, 185);
-  //ellipse(0, 0, 100, 110);
-  //fill(25);
-  //ellipse(-18, -8, 8, 8);
-  //ellipse(18, -8, 8, 8);
-  //stroke(25);
-  //strokeWeight(3);
-  //line(-15, 25, 15, 25);
-  //noStroke();
-  //fill(90, 180, 255);
-  //rect(-75, 55, 30, 18, 10);
-  //rect(45, 55, 30, 18, 10);
-  //rect(-30, 160, 20, 55, 10);
-  //rect(10, 160, 20, 55, 10);
+ 
   
   image(heroImage,0,0);
 
   if (flashFrames > 0) {
-    image(heroDamage, 0, 0);
+    image(heroDamage, 0, 0); // hero gets damaged image
+    //image(enemyDamage,width - 400,0); // enemy gets attack image
     fill(255, 80, 80, 120);
     ellipse(0, 60, 170, 240);
   }
@@ -209,23 +195,7 @@ void drawEnemy(float x, float y) {
   pushMatrix();
   translate(x, y);
 
-  //fill(165, 80, 220);
-  //ellipse(0, 30, 150, 170);
-  //fill(255);
-  //ellipse(-25, 10, 28, 28);
-  //ellipse(25, 10, 28, 28);
-  //fill(20);
-  //ellipse(-25, 10, 12, 12);
-  //ellipse(25, 10, 12, 12);
-  //stroke(255);
-  //strokeWeight(4);
-  //line(-25, 55, 25, 55);
-  //noStroke();
-  //fill(120, 45, 180);
-  //triangle(-70, -20, -120, 40, -65, 30);
-  //triangle(70, -20, 120, 40, 65, 30);
-  //rect(-55, 105, 18, 55, 10);
-  //rect(37, 105, 18, 55, 10);
+ 
   
   image(enemyImage, 0,0);
 
