@@ -29,6 +29,8 @@ PImage heroDamage;
 PImage enemyImage;
 PImage enemyDamage;
 
+int gameScreen = 0; // the variable we use to change from intro screen to fight screen, etc
+
 void setup() {
   size(1280, 800);
   smooth(4);
@@ -44,24 +46,18 @@ void setup() {
 }
 
 void draw() {
-  updateTimers();
-  drawScene();
-}
 
-void updateTimers() {
-  if (!gameOver && !win) {
-    roundTime--;
-    if (roundTime <= 0) {
-      heroDamaged();
-    }
+  if (gameScreen == 0){
+    introScreen();
   }
-
-  if (screenShakeFrames > 0) screenShakeFrames--;
-  if (flashFrames > 0) flashFrames--;
-  if (successFrames > 0) successFrames--;
+  else if (gameScreen == 1){
+    fightScreen();
+  }
 }
 
-void drawScene() {
+
+void fightScreen() {
+  updateTimers();
   float shakeX = 0;
   float shakeY = 0;
   if (screenShakeFrames > 0) {
@@ -150,62 +146,9 @@ void drawHealthBar(float x, float y, float w, float h, int value, int maxValue, 
   noStroke();
 }
 
-void drawTimer(float x, float y, float w, float h) {
-  float ratio = constrain((float)roundTime / roundTimeMax, 0, 1);
-
-  fill(20, 24, 38, 220);
-  rect(x, y, w, h, 16);
-
-  int timerColor = color(110, 220, 255);
-  if (ratio < 0.5) timerColor = color(255, 190, 80);
-  if (ratio < 0.25) timerColor = color(255, 90, 90);
-
-  fill(timerColor);
-  rect(x, y, w * ratio, h, 16);
-
-  fill(255);
-  textAlign(CENTER, CENTER);
-  textSize(24);
-  text(nf(ceil(roundTime / 60.0), 2) + "s", x + w/2, y + h/2 - 1);
-}
-
 void drawCharacters() {
   drawHero(160, 270);
   drawEnemy(width - 260, 270);
-}
-
-void drawHero(float x, float y) {
-  pushMatrix();
-  translate(x,y);
- 
-  
-  image(heroImage,0,0);
-
-  if (flashFrames > 0) {
-    image(heroDamage, 0, 0); // hero gets damaged image
-    //image(enemyDamage,width - 400,0); // enemy gets attack image
-    fill(255, 80, 80, 120);
-    ellipse(0, 60, 170, 240);
-  }
-
-  popMatrix();
-}
-
-void drawEnemy(float x, float y) {
-  pushMatrix();
-  translate(x, y);
-
- 
-  
-  image(enemyImage, 0,0);
-
-  if (successFrames > 0) {
-    image(enemyDamage,0,0);
-    fill(255, 255, 255, 50);
-    ellipse(0, 50, 200, 230);
-  }
-
-  popMatrix();
 }
 
 void drawSentenceBox() {
@@ -366,19 +309,6 @@ void checkTypedSentence() {
   }
 }
 
-void heroDamaged() {
-  playerHP--;
-  flashFrames = 12;
-  screenShakeFrames = 12;
-
-  if (playerHP <= 0) {
-    playerHP = 0;
-    gameOver = true;
-    return;
-  }
-
-  nextSentence();
-}
 
 void nextSentence() {
   currentSentence = sentencePool.get((int)random(sentencePool.size()));
