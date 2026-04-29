@@ -4,7 +4,10 @@
 // If time expires, the hero takes damage.
 // Complete enough sentences to win before health reaches zero.
 
-ArrayList<String> sentencePool = new ArrayList<String>();
+ArrayList<String> smallSentencePool = new ArrayList<String>();
+ArrayList<String> mediumSentencePool = new ArrayList<String>();
+ArrayList<String> largeSentencePool = new ArrayList<String>();
+
 String currentSentence = "";
 String typedText = "";
 
@@ -13,7 +16,7 @@ int roundTime = roundTimeMax;
 
 int playerHP = 5;
 int playerMaxHP = 5;
-int enemyHP = 1;
+int enemyHP = 8;
 int enemyMaxHP = 8;
 
 int screenShakeFrames = 0;
@@ -30,6 +33,7 @@ PImage enemyImage;
 PImage enemyDamage;
 
 int gameScreen = 0; // the variable we use to change from intro screen to fight screen, etc
+int attackSize = 0; // the variable we use to choose sentence length based on attack power (small, medium, large attack)
 
 void setup() {
   size(1280, 800);
@@ -38,7 +42,7 @@ void setup() {
   font = createFont("Arial", 28);
   textFont(font);
   initializeSentences();
-  nextSentence();
+  //nextSentence();
   heroImage = loadImage("sprite1.png");
   heroDamage = loadImage("sprite2.png");
   enemyImage = loadImage("sprite3.png");
@@ -47,13 +51,11 @@ void setup() {
 
 void draw() {
 
-  if (gameScreen == 0){
+  if (gameScreen == 0) {
     introScreen();
-  }
-  else if (gameScreen == 1){
+  } else if (gameScreen == 1) {
     choosingAttackScreen();
-  }
-  else if (gameScreen == 2){
+  } else if (gameScreen == 2) {
     fightScreen();
   }
 }
@@ -126,8 +128,8 @@ void drawBackground() {
     ellipse((i * 193) % width, (i * 97) % height, 2, 2);
   }
 
-  fill(30, 20, 35, 180);
-  rect(0, height - 130, width, 130);
+  //fill(30, 20, 35, 180);
+  //rect(0, height - 130, width, 130);
 }
 
 // -------HEADER (TIMER, HEALTH BARS, TOP TEXT)--------
@@ -172,15 +174,15 @@ void drawHealthBar(float x, float y, float w, float h, int value, int maxValue, 
 // -------DRAW BOTH CHARACTERS--------
 
 void drawCharacters() {
-  drawHero(160, 270);
-  drawEnemy(width - 260, 270);
+  drawHero(160, 320);
+  drawEnemy(width - 260, 320);
 }
 
 // -------SENTENCE PROMPT BOX--------
 
 void drawSentenceBox() {
   float x = 120;
-  float y = 430;
+  float y = 480;
   float w = width - 240;
   float h = 105;
 
@@ -244,7 +246,7 @@ void drawColoredSentence(String sentence, String typed, float startX, float star
 
 void drawInputBox() {
   float x = 120;
-  float y = 555;
+  float y = 605;
   float w = width - 240;
   float h = 75;
 
@@ -272,13 +274,13 @@ void drawInputBox() {
   text(shown, x + 20, y + 38, w - 40, h - 15);
 }
 
-// -------BOTTOM INSTRUCTIONS--------
+// -------BOTTOM INSTRUCTIONS (FOOTER)--------
 
 void drawInstructions() {
   fill(220);
   textAlign(CENTER, CENTER);
   textSize(18);
-  text("Press BACKSPACE to correct mistakes. Press ENTER to restart after win or loss.", width/2, 665);
+  text("Press BACKSPACE to correct mistakes. Press ENTER to restart after win or loss.", width/2, 715);
 }
 
 
@@ -348,5 +350,5 @@ void restartGame() {
   flashFrames = 0;
   successFrames = 0;
   screenShakeFrames = 0;
-  nextSentence();
+  //nextSentence();
 }
