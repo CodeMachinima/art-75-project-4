@@ -14,3 +14,18 @@ void drawEnemy(float x, float y) {
 
   popMatrix();
 }
+
+void checkTypedSentence() {
+  if (typedText.equals(currentSentence)) {
+    enemyHP--;
+    successFrames = 12;
+
+    if (enemyHP <= 0) {
+      enemyHP = 0;
+      win = true;
+      return;
+    }
+
+    nextSentence();
+  }
+}

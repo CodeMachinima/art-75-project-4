@@ -8,12 +8,12 @@ ArrayList<String> sentencePool = new ArrayList<String>();
 String currentSentence = "";
 String typedText = "";
 
-int roundTimeMax = 12 * 60; // 12 seconds at 60 FPS
+int roundTimeMax = 12 * 60; // 12 seconds at 60 FPS <-- depending on how fast ur computer is, THE TIME WILL BE FASTER OR SLOWER
 int roundTime = roundTimeMax;
 
 int playerHP = 5;
 int playerMaxHP = 5;
-int enemyHP = 8;
+int enemyHP = 1;
 int enemyMaxHP = 8;
 
 int screenShakeFrames = 0;
@@ -57,6 +57,11 @@ void draw() {
     fightScreen();
   }
 }
+
+
+// -----------------------------------------
+// ------FIGHT SCREEN (GAME SCREEN 2)-------
+// -----------------------------------------
 
 
 void fightScreen() {
@@ -106,6 +111,7 @@ void fightScreen() {
 
 
 
+// -------BACKGROUND--------
 
 void drawBackground() {
   for (int y = 0; y < height; y++) {
@@ -124,6 +130,8 @@ void drawBackground() {
   rect(0, height - 130, width, 130);
 }
 
+// -------HEADER (TIMER, HEALTH BARS, TOP TEXT)--------
+
 void drawHeader() {
   fill(255);
   textAlign(LEFT, TOP);
@@ -139,6 +147,8 @@ void drawHeader() {
 
   drawTimer(width/2 - 140, 30, 280, 54);
 }
+
+// -------HEALTH BARS--------
 
 void drawHealthBar(float x, float y, float w, float h, int value, int maxValue, int c, String label) {
   fill(255);
@@ -159,10 +169,14 @@ void drawHealthBar(float x, float y, float w, float h, int value, int maxValue, 
   noStroke();
 }
 
+// -------DRAW BOTH CHARACTERS--------
+
 void drawCharacters() {
   drawHero(160, 270);
   drawEnemy(width - 260, 270);
 }
+
+// -------SENTENCE PROMPT BOX--------
 
 void drawSentenceBox() {
   float x = 120;
@@ -184,6 +198,8 @@ void drawSentenceBox() {
 
   drawColoredSentence(currentSentence, typedText, x + 24, y + 50, w - 48, 34);
 }
+
+// -------SENTENCE COLORS--------
 
 void drawColoredSentence(String sentence, String typed, float startX, float startY, float maxWidth, float lineHeight) {
   textSize(28);
@@ -224,6 +240,8 @@ void drawColoredSentence(String sentence, String typed, float startX, float star
   }
 }
 
+// -------INPUT BOX--------
+
 void drawInputBox() {
   float x = 120;
   float y = 555;
@@ -254,12 +272,17 @@ void drawInputBox() {
   text(shown, x + 20, y + 38, w - 40, h - 15);
 }
 
+// -------BOTTOM INSTRUCTIONS--------
+
 void drawInstructions() {
   fill(220);
   textAlign(CENTER, CENTER);
   textSize(18);
   text("Press BACKSPACE to correct mistakes. Press ENTER to restart after win or loss.", width/2, 665);
 }
+
+
+// --------END GAME OVERLAY----------
 
 void drawEndOverlay() {
   fill(0, 180);
@@ -285,23 +308,16 @@ void drawEndOverlay() {
 
 
 
-
-
-
-
 // ------------------------------
 // --------HELPER STUFF----------
 // ------------------------------
-
-
-
-
 
 
 void keyPressed() {
   if (key == ENTER || key == RETURN) {
     if (gameOver || win) {
       restartGame();
+      gameScreen = 0;
     }
     return;
   }
@@ -323,31 +339,6 @@ void keyPressed() {
   }
 }
 
-void checkTypedSentence() {
-  if (typedText.equals(currentSentence)) {
-    enemyHP--;
-    successFrames = 12;
-
-    if (enemyHP <= 0) {
-      enemyHP = 0;
-      win = true;
-      return;
-    }
-
-    nextSentence();
-  }
-}
-
-
-void nextSentence() {
-  currentSentence = sentencePool.get((int)random(sentencePool.size()));
-  typedText = "";
-
-  int extraFrames = max(0, currentSentence.length() - 30) * 2;
-  roundTimeMax = constrain(10 * 60 + extraFrames, 8 * 60, 16 * 60);
-  roundTime = roundTimeMax;
-}
-
 void restartGame() {
   playerHP = playerMaxHP;
   enemyHP = enemyMaxHP;
@@ -358,25 +349,4 @@ void restartGame() {
   successFrames = 0;
   screenShakeFrames = 0;
   nextSentence();
-}
-
-void initializeSentences() {
-  sentencePool.add("The moonlight painted silver lines across the quiet lake.");
-  sentencePool.add("A clever fox slipped behind the fence before sunrise.");
-  sentencePool.add("Typing with calm focus is better than rushing into mistakes.");
-  sentencePool.add("The old library smelled like paper, dust, and forgotten stories.");
-  sentencePool.add("Rain tapped softly against the window throughout the afternoon.");
-  sentencePool.add("Our team celebrated the small win because progress still matters.");
-  sentencePool.add("The engineer adjusted the gears until the machine hummed smoothly.");
-  sentencePool.add("A bright red balloon drifted above the crowded city street.");
-  sentencePool.add("She packed a flashlight, a map, and a sandwich for the hike.");
-  sentencePool.add("The astronaut watched Earth glow like a jewel in the darkness.");
-  sentencePool.add("Every sentence becomes easier when your hands learn the rhythm.");
-  sentencePool.add("The baker pulled warm bread from the oven just before dawn.");
-  sentencePool.add("A sudden gust scattered leaves across the empty playground.");
-  sentencePool.add("He promised to return the book as soon as he finished the final chapter.");
-  sentencePool.add("The painter mixed blue and gold to capture the evening sky.");
-  sentencePool.add("A patient gardener knows that strong roots take time to grow.");
-  sentencePool.add("The train whistle echoed through the valley and faded into silence.");
-  sentencePool.add("Good timing and accurate typing can turn panic into confidence.");
 }

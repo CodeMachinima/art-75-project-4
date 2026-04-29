@@ -1,6 +1,7 @@
+
 void choosingAttackScreen(){
   drawBackground();
-  //drawHeader();
+  drawHeader();
   drawCharacters();
   
   float x = 120;
@@ -29,3 +30,32 @@ void choosingAttackScreen(){
   
   
 }
+
+
+public void mousePressed(){
+  if (gameScreen == 0){
+    gameScreen = 1;
+  }
+  
+  if (gameScreen == 1){
+    //if (mouseX < 600 && mouseX > 120 && mouseY < 570 && mouseY > 450){
+    //  gameScreen = 2;
+    //}
+    
+    
+    
+    if (mouseX>120 && mouseX<width-240+120 && mouseY>450 && mouseY<500){
+      gameScreen = 0;
+    }
+    
+    if (mouseX>120 && mouseX<width-240+120 && mouseY>450+60 && mouseY<500+60){
+      gameScreen = 0;
+    }
+    
+    if (mouseX>120 && mouseX<width-240+120 && mouseY>450+120 && mouseY<500+120){
+      gameScreen = 0;
+    }
+  }
+}
+  
+  
