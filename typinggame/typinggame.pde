@@ -32,6 +32,7 @@ PImage heroDamage;
 PImage enemyImage;
 PImage enemyDamage;
 PImage startScreenBG;
+PImage attackBG;
 
 int gameScreen = 0; // the variable we use to change from intro screen to fight screen, etc. starts at 0 bc thats intro screen
 int attackSize = 0; // the variable we use to choose sentence length based on attack power (small, medium, large attack)
@@ -49,6 +50,7 @@ void setup() {
   enemyImage = loadImage("sprite3.png");
   enemyDamage = loadImage("sprite4.png");
   startScreenBG = loadImage("startScreenBG.PNG");
+  attackBG = loadImage("attackBG.PNG");
 }
 
 void draw() {
@@ -129,6 +131,7 @@ void drawBackground() {
   for (int i = 0; i < 60; i++) {
     ellipse((i * 193) % width, (i * 97) % height, 2, 2);
   }
+  image(attackBG, 0, 0);
 
   //fill(30, 20, 35, 180);
   //rect(0, height - 130, width, 130);
