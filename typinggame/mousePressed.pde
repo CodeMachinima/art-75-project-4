@@ -2,6 +2,7 @@
 void mousePressed() {
   if (gameScreen == 0) {
     gameScreen = 1;
+    return;
   }
 
   if (gameScreen == 1) {
@@ -26,7 +27,3 @@ void mousePressed() {
     }
   }
 }
-
-
-// need to fix bug where if you are on screen 1 and press where the buttons on game screen 2 are, it actually clicks them. 
-// maybe change start screen action to key pressed instead

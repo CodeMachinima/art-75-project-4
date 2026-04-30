@@ -4,7 +4,7 @@ void choosingAttackScreen() {
   fill(255);
   textAlign(LEFT, TOP);
   textSize(34);
-  text("Typing Battle", 40, 25);
+  text("Wizard Typing Battle", 40, 25);
 
   textSize(20);
   fill(220);

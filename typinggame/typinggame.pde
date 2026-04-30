@@ -32,7 +32,7 @@ PImage heroDamage;
 PImage enemyImage;
 PImage enemyDamage;
 
-int gameScreen = 0; // the variable we use to change from intro screen to fight screen, etc
+int gameScreen = 0; // the variable we use to change from intro screen to fight screen, etc. starts at 0 bc thats intro screen
 int attackSize = 0; // the variable we use to choose sentence length based on attack power (small, medium, large attack)
 
 void setup() {
@@ -138,7 +138,7 @@ void drawHeader() {
   fill(255);
   textAlign(LEFT, TOP);
   textSize(34);
-  text("Typing Battle", 40, 25);
+  text("Wizard Typing Battle", 40, 25);
 
   textSize(20);
   fill(220);
@@ -201,7 +201,7 @@ void drawSentenceBox() {
   drawColoredSentence(currentSentence, typedText, x + 24, y + 50, w - 48, 34);
 }
 
-// -------SENTENCE COLORS--------
+// -------SENTENCE COLORED--------
 
 void drawColoredSentence(String sentence, String typed, float startX, float startY, float maxWidth, float lineHeight) {
   textSize(28);
@@ -323,7 +323,7 @@ void keyPressed() {
     }
     return;
   }
-
+  
   if (gameOver || win) return;
 
   if (key == BACKSPACE) {
