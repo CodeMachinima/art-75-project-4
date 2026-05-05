@@ -45,12 +45,13 @@ void setup() {
   textFont(font);
   initializeSentences();
   //nextSentence();
-  heroImage = loadImage("sprite1.png");
+  heroImage = loadImage("hero_default.png");
   heroDamage = loadImage("sprite2.png");
-  enemyImage = loadImage("sprite3.png");
+  enemyImage = loadImage("enemy_default.PNG");
   enemyDamage = loadImage("sprite4.png");
   startScreenBG = loadImage("startScreenBG.PNG");
   attackBG = loadImage("attackBG.PNG");
+  
 }
 
 void draw() {
@@ -179,8 +180,8 @@ void drawHealthBar(float x, float y, float w, float h, int value, int maxValue, 
 // -------DRAW BOTH CHARACTERS--------
 
 void drawCharacters() {
-  drawHero(160, 320);
-  drawEnemy(width - 260, 320);
+  drawHero(160, 200);
+  drawEnemy(width - 400, 200);
 }
 
 // -------SENTENCE PROMPT BOX--------
@@ -189,7 +190,7 @@ void drawSentenceBox() {
   float x = 120;
   float y = 480;
   float w = width - 240;
-  float h = 105;
+  float h = 120;
 
   fill(18, 18, 30, 210);
   rect(x, y, w, h, 24);
@@ -253,7 +254,7 @@ void drawInputBox() {
   float x = 120;
   float y = 605;
   float w = width - 240;
-  float h = 75;
+  float h = 110;
 
   fill(10, 12, 22, 220);
   rect(x, y, w, h, 20);
@@ -285,7 +286,7 @@ void drawInstructions() {
   fill(220);
   textAlign(CENTER, CENTER);
   textSize(18);
-  text("Press BACKSPACE to correct mistakes. Press ENTER to restart after win or loss.", width/2, 715);
+  text("Press BACKSPACE to correct mistakes. Press ENTER to restart after win or loss.", width/2, 730);
 }
 
 
