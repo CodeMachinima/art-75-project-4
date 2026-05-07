@@ -59,7 +59,6 @@ void setup() {
   startScreenBG = loadImage("startScreenBG.PNG");
   attackBG = loadImage("attackBG.PNG");
   attackButtons = loadImage("attackButtons.PNG");
-  
 }
 
 void draw() {
@@ -337,7 +336,7 @@ void keyPressed() {
     }
     return;
   }
-  
+
   if (gameOver || win) return;
 
   if (key == BACKSPACE) {
