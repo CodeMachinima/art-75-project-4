@@ -8,6 +8,7 @@ void drawEnemy(float x, float y) {
 
   if (successFrames > 0) {
     image(enemyDamage, 0, 0);
+    heroAttackGif.play();
     fill(255, 255, 255, 50);
     ellipse(0, 50, 200, 230);
   }
@@ -30,6 +31,8 @@ void checkTypedSentence() {
     if (attackSize==1) enemyHP-=1;
     if (attackSize==2) enemyHP-=2;
     if (attackSize==3) enemyHP-=3;
+   // heroAttackGif.play();
+    
     successFrames = 12;
     screenShakeFrames = 12;
 

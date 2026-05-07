@@ -4,6 +4,8 @@
 // If time expires, the hero takes damage.
 // Complete enough sentences to win before health reaches zero.
 
+import gifAnimation.*;
+
 ArrayList<String> smallSentencePool = new ArrayList<String>();
 ArrayList<String> mediumSentencePool = new ArrayList<String>();
 ArrayList<String> largeSentencePool = new ArrayList<String>();
@@ -29,6 +31,7 @@ PFont font;
 
 PImage heroImage;
 PImage heroDamage;
+Gif heroAttackGif;
 PImage enemyImage;
 PImage enemyDamage;
 PImage startScreenBG;
@@ -47,6 +50,7 @@ void setup() {
   //nextSentence();
   heroImage = loadImage("hero_default.png");
   heroDamage = loadImage("sprite2.png");
+  heroAttackGif = new Gif(this, "hero_attack.gif");
   enemyImage = loadImage("enemy_default.PNG");
   enemyDamage = loadImage("sprite4.png");
   startScreenBG = loadImage("startScreenBG.PNG");

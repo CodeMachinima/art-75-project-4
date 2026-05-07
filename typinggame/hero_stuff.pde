@@ -3,7 +3,8 @@ void drawHero(float x, float y) {
   translate(x, y);
 
 
-  image(heroImage, 0, 0);
+  //image(heroImage, 0, 0);
+  image(heroAttackGif, 0, 0);
 
   if (flashFrames > 0) {
     image(heroDamage, 0, 0); // hero gets damaged image
