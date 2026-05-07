@@ -1,8 +1,11 @@
+boolean HeroGotAttacked = false;
 void updateTimers() {
   if (!gameOver && !win) {
     roundTime--;
     if (roundTime <= 0) {
       heroDamaged();
+      //HeroGotAttacked = true;
+      EnemyAttackGif = true;
     }
   }
 

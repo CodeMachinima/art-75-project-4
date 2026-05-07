@@ -1,29 +1,49 @@
+boolean AttackGif = false;
+boolean EnemyAttackGif = false;
+int myTime = 0;
 void drawEnemy(float x, float y) {
   pushMatrix();
   translate(x, y);
 
 
+// need to fill out below with enemy assets
+  if (!EnemyAttackGif){
+      image(enemyImage, 0, 0);
+  }
+  else{
+    //image(heroAttackGif, 0, 0);
+     //heroAttackGif.play();
+       if(myTime + 0.75*1000 < millis()){
+        HeroGotAttacked = true;
+        myTime = millis();
+       EnemyAttackGif = false;
+     }
+   
+  }
 
-  image(enemyImage, 0, 0);
-
-  if (successFrames > 0) {
-    image(enemyDamage, 0, 0);
-    heroAttackGif.play();
-    fill(255, 255, 255, 50);
-    ellipse(0, 50, 200, 230);
+  if (EnemyGotAttacked) {
+      
+      fill(255, 0, 0, 50);
+      ellipse(170, 175, 200, 300);
+      popMatrix();
+      if (screenShakeFrames > 0) screenShakeFrames--;
+      if (successFrames > 0) successFrames--;
+      float shakeX = 0;
+      float shakeY = 0;
+      if (screenShakeFrames > 0) {
+        shakeX = random(-8, 8);
+        shakeY = random(-8, 8);
+      }
+      translate(shakeX, shakeY);
+      if(myTime + 1*1000 < millis()){
+        EnemyGotAttacked = false;
+        
+     }
+     pushMatrix();
+    
   }
 
   popMatrix();
-  if (screenShakeFrames > 0) screenShakeFrames--;
-  if (successFrames > 0) successFrames--;
-  float shakeX = 0;
-  float shakeY = 0;
-  if (screenShakeFrames > 0) {
-    shakeX = random(-8, 8);
-    shakeY = random(-8, 8);
-  }
-  translate(shakeX, shakeY);
-
 }
 
 void checkTypedSentence() {
@@ -31,8 +51,11 @@ void checkTypedSentence() {
     if (attackSize==1) enemyHP-=1;
     if (attackSize==2) enemyHP-=2;
     if (attackSize==3) enemyHP-=3;
-   // heroAttackGif.play();
-    
+    // heroAttackGif.play();
+
+    AttackGif = true;
+    isCharging = false;
+    myTime = millis();
     successFrames = 12;
     screenShakeFrames = 12;
 

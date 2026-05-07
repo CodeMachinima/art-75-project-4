@@ -32,10 +32,12 @@ PFont font;
 PImage heroImage;
 PImage heroDamage;
 Gif heroAttackGif;
+Gif heroChargeGif;
 PImage enemyImage;
 PImage enemyDamage;
 PImage startScreenBG;
 PImage attackBG;
+PImage attackButtons;
 
 int gameScreen = 0; // the variable we use to change from intro screen to fight screen, etc. starts at 0 bc thats intro screen
 int attackSize = 0; // the variable we use to choose sentence length based on attack power (small, medium, large attack)
@@ -51,10 +53,12 @@ void setup() {
   heroImage = loadImage("hero_default.png");
   heroDamage = loadImage("sprite2.png");
   heroAttackGif = new Gif(this, "hero_attack.gif");
+  heroChargeGif = new Gif(this, "hero_charge.gif");
   enemyImage = loadImage("enemy_default.PNG");
   enemyDamage = loadImage("sprite4.png");
   startScreenBG = loadImage("startScreenBG.PNG");
   attackBG = loadImage("attackBG.PNG");
+  attackButtons = loadImage("attackButtons.PNG");
   
 }
 
@@ -184,7 +188,7 @@ void drawHealthBar(float x, float y, float w, float h, int value, int maxValue, 
 // -------DRAW BOTH CHARACTERS--------
 
 void drawCharacters() {
-  drawHero(160, 200);
+  drawHero(-350, -30);
   drawEnemy(width - 400, 200);
 }
 
