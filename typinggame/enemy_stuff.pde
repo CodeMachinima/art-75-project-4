@@ -12,17 +12,23 @@ void drawEnemy(float x, float y) {
 
 
   // need to fill out below with enemy assets
-  if (!isCharging) { // NEED TO ADD !EnemyAttackGif AS A PARAMETER ONCE GIF IS DONE
+  if (!EnemyAttackGif && !isCharging) { 
     image(enemyImage, 0, 0);
   }
-  //else if(EnemyAttackGif){
-  //  image(enemyAttackGif, 0, 0); // add enemy attack
-  //}
+  if(EnemyAttackGif){
+    image(enemyAttackGif, 0, 0); // add enemy attack
+    enemyAttackGif.play();
+    if (myTime + 0.75*1000 < millis()) { //waits a bit then exits else-if block
+      HeroGotAttacked = true; 
+      myHurtTime = millis();
+      EnemyAttackGif = false; // exits attack gif block
+      }
+  }
   
     else if (isCharging){
       image(enemyChargeGif, 0, 0);
       enemyChargeGif.play();
-      if (myChargeTime + 0.75*1000 < millis()) {
+      if (myChargeTime + 0.8*1000 < millis()) {
       enemyChargeGif.pause();
       }
     }
@@ -47,6 +53,7 @@ void drawEnemy(float x, float y) {
     translate(shakeX, shakeY);
     if (myHurtTime + 1*1000 < millis()) {
       EnemyGotAttacked = false;
+      
     }
    
     pushMatrix();

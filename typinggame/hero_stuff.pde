@@ -32,7 +32,7 @@ void drawHero(float x, float y) {
 
 
  
-  if (HeroGotAttacked) {
+  if (HeroGotAttacked) {           //need to fix this! not sure why enemy is shaking and not the hero. also no ellipse??????????
 
     if (screenShakeFrames > 0) {
       fill(255, 0, 0, 50);
@@ -50,6 +50,7 @@ void drawHero(float x, float y) {
     translate(shakeX, shakeY);
     if (myHurtTime + 1*1000 < millis()) {
       HeroGotAttacked = false;
+      
     }
     pushMatrix();
   }
@@ -66,8 +67,8 @@ void heroDamaged() {
   flashFrames = 12;
   screenShakeFrames = 12;
   
-  HeroGotAttacked = true;
-  myHurtTime = millis();
+  //HeroGotAttacked = true;
+  //myHurtTime = millis();
 
   if (playerHP <= 0) {
     playerHP = 0;

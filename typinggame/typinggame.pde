@@ -34,6 +34,7 @@ PImage heroDamage;
 Gif heroAttackGif;
 Gif heroChargeGif;
 Gif enemyChargeGif;
+Gif enemyAttackGif;
 PImage enemyImage;
 PImage enemyDamage;
 PImage startScreenBG;
@@ -57,6 +58,7 @@ void setup() {
   heroChargeGif = new Gif(this, "hero_charge.gif");
   enemyImage = loadImage("enemy_default.PNG");
   enemyChargeGif = new Gif(this, "enemy_charge.gif"); 
+  enemyAttackGif = new Gif(this, "enemy_attack.gif");
   enemyDamage = loadImage("sprite4.png");
   startScreenBG = loadImage("startScreenBG.PNG");
   attackBG = loadImage("attackBG.PNG");

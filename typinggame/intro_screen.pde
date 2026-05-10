@@ -7,5 +7,4 @@ void introScreen() {
   image(startScreenBG, 0, 0);
 
 
-  // need to make this prettier fs fs
 }

@@ -1,5 +1,6 @@
 boolean isCharging = false; //<>//
 void choosingAttackScreen() {
+  isCharging = false;
   drawBackground();
   fill(255);
   textAlign(LEFT, TOP);
