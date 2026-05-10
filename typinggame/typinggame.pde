@@ -33,6 +33,7 @@ PImage heroImage;
 PImage heroDamage;
 Gif heroAttackGif;
 Gif heroChargeGif;
+Gif enemyChargeGif;
 PImage enemyImage;
 PImage enemyDamage;
 PImage startScreenBG;
@@ -55,6 +56,7 @@ void setup() {
   heroAttackGif = new Gif(this, "hero_attack.gif");
   heroChargeGif = new Gif(this, "hero_charge.gif");
   enemyImage = loadImage("enemy_default.PNG");
+  enemyChargeGif = new Gif(this, "enemy_charge.gif"); 
   enemyDamage = loadImage("sprite4.png");
   startScreenBG = loadImage("startScreenBG.PNG");
   attackBG = loadImage("attackBG.PNG");
@@ -109,7 +111,8 @@ void fightScreen() {
     rect(0, 0, width, height);
   }
 
-  if (gameOver || win) {
+  if (gameOver || (win)) {
+    
     drawEndOverlay();
   }
 

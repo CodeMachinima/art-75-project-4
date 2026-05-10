@@ -13,7 +13,7 @@ void mousePressed() {
       nextSentence(1);
       gameScreen = 2;
       isCharging = true;
-      myTime = millis();
+      myChargeTime = millis();
     }
 
     if (mouseX>110 && mouseX<1061 && mouseY>515+79 && mouseY<594+79) {
@@ -21,7 +21,7 @@ void mousePressed() {
       nextSentence(2);
       gameScreen = 2;
       isCharging = true;
-      myTime = millis();
+      myChargeTime = millis();
     }
 
     if (mouseX>110 && mouseX<1061 && mouseY>515+158 && mouseY<594+158) {
@@ -29,7 +29,7 @@ void mousePressed() {
       nextSentence(3);
       gameScreen = 2;
       isCharging = true;
-      myTime = millis();
+      myChargeTime = millis();
     }
   }
 }

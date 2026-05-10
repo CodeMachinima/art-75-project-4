@@ -3,42 +3,41 @@ void drawHero(float x, float y) {
   pushMatrix();
   translate(x, y);
 
-  if (!AttackGif && !isCharging) {
+  if (!AttackGif && !isCharging) { //shows the default image when not attacking or charging
     image(heroImage, 0, 0);
-    heroChargeGif.jump(0);
-    heroAttackGif.jump(0);
-  } else if (AttackGif) {
-    //translate(-450, -250);
+
+    } 
+    
+  else if (AttackGif) { //when attacking
+
     image(heroAttackGif, 0, 0);
     heroAttackGif.play();
-    if (myTime + 0.75*1000 < millis()) {
-      EnemyGotAttacked = true;
-      myTime = millis();
-
-
-      AttackGif = false;
+    
+    if (myTime + 0.75*1000 < millis()) { //waits a bit then exits else-if block
+      EnemyGotAttacked = true; //triggers enemy hurt animation (the red stuff and screen shake) after wizard finishes attack animation
+      myHurtTime = millis();
+      AttackGif = false; // exits attack gif block
+      }
     }
-  } else if (isCharging) {
-    //translate(-450, -250);
-    image(heroChargeGif, 0, 0);
+    
+  else if (isCharging) {
+    image(heroChargeGif, 0, 0); //plays wizard charging gif
     heroChargeGif.play();
-    if (myTime + 0.5*1000 < millis()) {
-      heroChargeGif.pause();
+    if (myChargeTime + 0.55*1000 < millis()) {
+      heroChargeGif.pause(); //pauses gif so it doesn't keep looping
     }
   }
 
 
 
 
-  //if (flashFrames > 0) {
-  //  image(heroDamage, 0, 0); // hero gets damaged image
-  //  fill(255, 0, 0, 50);
-  //  ellipse(0, 60, 170, 240);
-  //}
+ 
   if (HeroGotAttacked) {
 
-    fill(255, 0, 0, 50);
-    ellipse(0, 175, 200, 300);
+    if (screenShakeFrames > 0) {
+      fill(255, 0, 0, 50);
+      ellipse(0, 175, 200, 300);
+    }
     popMatrix();
     if (screenShakeFrames > 0) screenShakeFrames--;
     if (flashFrames > 0) flashFrames--;
@@ -49,7 +48,7 @@ void drawHero(float x, float y) {
       shakeY = random(-8, 8);
     }
     translate(shakeX, shakeY);
-    if (myTime + 1*1000 < millis()) {
+    if (myHurtTime + 1*1000 < millis()) {
       HeroGotAttacked = false;
     }
     pushMatrix();
@@ -66,6 +65,9 @@ void heroDamaged() {
   if (attackSize==2 || attackSize==3) playerHP-=2;
   flashFrames = 12;
   screenShakeFrames = 12;
+  
+  HeroGotAttacked = true;
+  myHurtTime = millis();
 
   if (playerHP <= 0) {
     playerHP = 0;

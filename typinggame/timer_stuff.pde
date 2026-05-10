@@ -4,7 +4,6 @@ void updateTimers() {
     roundTime--;
     if (roundTime <= 0) {
       heroDamaged();
-      //HeroGotAttacked = true;
       EnemyAttackGif = true;
     }
   }

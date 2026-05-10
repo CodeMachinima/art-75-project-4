@@ -17,26 +17,4 @@ void choosingAttackScreen() {
 
   image(attackButtons, 0, 0);
 
-  //float x = 110;
-  //float y = 515;
-  //float w = 1061;
-  //float h = 79;
-
-  //// boxes to choose attacks
-
-  //fill(200);
-  //rect(x, y, w, h);
-  //rect(x, y + 79, w, h);
-  //rect(x, y + 158 , w, h);
-
-
-  //// text for attack boxes
-
-  //textSize(20);
-  //fill(0);
-  //text("Small attack", x + 100, y + 30);
-  //text("Medium attack", x + 100, y + 100);
-  //text("Large attack", x + 100, y + 160);
-
-  // NOTE: THESE ARE REALLY UGLY AND NOT CONFIGURED. WILL FIX.
 }
