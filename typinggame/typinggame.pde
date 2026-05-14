@@ -27,7 +27,10 @@ int successFrames = 0;
 
 boolean gameOver = false;
 boolean win = false;
-PFont font;
+boolean endOverlay = false;
+PFont mainFont;
+PFont otherFont;
+PFont descFont;
 
 PImage heroImage;
 PImage heroDamage;
@@ -40,6 +43,7 @@ PImage enemyDamage;
 PImage startScreenBG;
 PImage attackBG;
 PImage attackButtons;
+PImage healthBar;
 
 int gameScreen = 0; // the variable we use to change from intro screen to fight screen, etc. starts at 0 bc thats intro screen
 int attackSize = 0; // the variable we use to choose sentence length based on attack power (small, medium, large attack)
@@ -48,8 +52,10 @@ void setup() {
   size(1280, 800);
   smooth(4);
   frameRate(60);
-  font = createFont("Arial", 28);
-  textFont(font);
+  mainFont = createFont("AMORIA.otf", 28);
+  descFont = createFont("TamilMN", 28);
+  otherFont = createFont("LiSungLight", 28);
+  
   initializeSentences();
   //nextSentence();
   heroImage = loadImage("hero_default.png");
@@ -63,6 +69,7 @@ void setup() {
   startScreenBG = loadImage("startScreenBG.PNG");
   attackBG = loadImage("attackBG.PNG");
   attackButtons = loadImage("attackButtons.PNG");
+  healthBar = loadImage("healthbar.PNG");
 }
 
 void draw() {
@@ -84,15 +91,15 @@ void draw() {
 
 void fightScreen() {
   updateTimers();
-  float shakeX = 0;
-  float shakeY = 0;
-  if (screenShakeFrames > 0) {
-    shakeX = random(-8, 8);
-    shakeY = random(-8, 8);
-  }
+  //float shakeX = 0;
+  //float shakeY = 0;
+  //if (screenShakeFrames > 0) {
+  //  shakeX = random(-8, 8);
+  //  shakeY = random(-8, 8);
+  //}
 
   pushMatrix();
-  translate(shakeX, shakeY);
+  //translate(shakeX, shakeY);
 
   drawBackground();
   drawHeader();
@@ -101,22 +108,22 @@ void fightScreen() {
   drawInputBox();
   drawInstructions();
 
-  if (flashFrames > 0) {
-    noStroke();
-    fill(255, 70, 70, 80);
-    rect(0, 0, width, height);
-  }
+  //if (flashFrames > 0) {
+  //  noStroke();
+  //  fill(255, 70, 70, 80);
+  //  rect(0, 0, width, height);
+  //}
 
-  if (successFrames > 0) {
-    noStroke();
-    fill(100, 255, 140, 60);
-    rect(0, 0, width, height);
-  }
+  //if (successFrames > 0) {
+  //  noStroke();
+  //  fill(100, 255, 140, 60);
+  //  rect(0, 0, width, height);
+  //}
 
-  if (gameOver || (win)) {
+  //if (gameOver || (win)) {
     
-    drawEndOverlay();
-  }
+  //  drawEndOverlay();
+  //}
 
   popMatrix();
 }
@@ -155,15 +162,18 @@ void drawBackground() {
 void drawHeader() {
   fill(255);
   textAlign(LEFT, TOP);
-  textSize(34);
+  textFont(mainFont);
+  textSize(40);
   text("Wizard Typing Battle", 40, 25);
 
+  textFont(descFont);
   textSize(20);
   fill(220);
   text("Finish the sentence before time runs out.", 42, 70);
+  textFont(otherFont);
 
-  drawHealthBar(40, 150, 320, 26, playerHP, playerMaxHP, color(80, 220, 120), "Hero");
-  drawHealthBar(width - 360, 150, 320, 26, enemyHP, enemyMaxHP, color(255, 120, 120), "Enemy");
+  drawHealthBar(40, 150, 320, 26, playerHP, playerMaxHP, color(80, 220, 120), "Wizard");
+  drawHealthBar(width - 360, 150, 320, 26, enemyHP, enemyMaxHP, color(255, 120, 120), "Non-Wizard");
 
   drawTimer(width/2 - 140, 30, 280, 54);
 }
@@ -171,22 +181,26 @@ void drawHeader() {
 // -------HEALTH BARS--------
 
 void drawHealthBar(float x, float y, float w, float h, int value, int maxValue, int c, String label) {
+  image(healthBar, x-109, y-42);
+  
   fill(255);
   textSize(18);
   textAlign(LEFT, BOTTOM);
-  text(label, x, y - 8);
+  text(label, x, y - 10);
 
   fill(40, 40, 55, 230);
-  rect(x, y, w, h, 10);
+  rect(x, y, w, h);
 
   float ratio = constrain((float)value / maxValue, 0, 1);
   fill(c);
-  rect(x, y, w * ratio, h, 10);
+  rect(x, y, w * ratio, h);
 
   noFill();
   stroke(255, 160);
-  rect(x, y, w, h, 10);
+  rect(x, y, w, h);
   noStroke();
+  
+  
 }
 
 // -------DRAW BOTH CHARACTERS--------
@@ -305,6 +319,7 @@ void drawInstructions() {
 // --------END GAME OVERLAY----------
 
 void drawEndOverlay() {
+  endOverlay = true;
   fill(0, 180);
   rect(0, 0, width, height);
 
@@ -368,5 +383,6 @@ void restartGame() {
   flashFrames = 0;
   successFrames = 0;
   screenShakeFrames = 0;
+  
   //nextSentence();
 }

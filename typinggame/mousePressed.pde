@@ -5,7 +5,7 @@ void mousePressed() {
     return;
   }
 
-  if (gameScreen == 1) {
+  if (gameScreen == 1 && !endOverlay) {
 
 
     if (mouseX>110 && mouseX<1061 && mouseY>515 && mouseY<594) {

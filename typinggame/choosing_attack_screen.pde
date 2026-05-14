@@ -4,18 +4,33 @@ void choosingAttackScreen() {
   drawBackground();
   fill(255);
   textAlign(LEFT, TOP);
-  textSize(34);
+  
+  textFont(mainFont);
+  textSize(40);
   text("Wizard Typing Battle", 40, 25);
-
+  
+  textFont(descFont);
   textSize(20);
   fill(220);
   text("Finish the sentence before time runs out.", 42, 70);
+  textFont(otherFont);
 
-  drawHealthBar(40, 150, 320, 26, playerHP, playerMaxHP, color(80, 220, 120), "Hero");
-  drawHealthBar(width - 360, 150, 320, 26, enemyHP, enemyMaxHP, color(255, 120, 120), "Enemy");
+  drawHealthBar(40, 150, 320, 26, playerHP, playerMaxHP, color(80, 220, 120), "Wizard");
+  drawHealthBar(width - 360, 150, 320, 26, enemyHP, enemyMaxHP, color(255, 120, 120), "Non-Wizard");
   drawCharacters();
 
 
   image(attackButtons, 0, 0);
+  
+  if (enemyHP <= 0) {
+      enemyHP = 0;
+      win = true;
+      drawEndOverlay();
+    }
 
+if (playerHP <= 0) {
+    playerHP = 0;
+    gameOver = true;
+    drawEndOverlay();
+  }
 }

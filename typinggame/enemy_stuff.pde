@@ -21,6 +21,8 @@ void drawEnemy(float x, float y) {
     if (myTime + 0.75*1000 < millis()) { //waits a bit then exits else-if block
       HeroGotAttacked = true; 
       myHurtTime = millis();
+        if (attackSize==1) playerHP-=1;
+  if (attackSize==2 || attackSize==3) playerHP-=2;
       EnemyAttackGif = false; // exits attack gif block
       }
   }
@@ -64,10 +66,9 @@ void drawEnemy(float x, float y) {
 
 void checkTypedSentence() {
   if (typedText.equals(currentSentence)) {
-    if (attackSize==1) enemyHP-=1;
-    if (attackSize==2) enemyHP-=2;
-    if (attackSize==3) enemyHP-=3;
-    // heroAttackGif.play();
+    //if (attackSize==1) enemyHP-=1;
+    //if (attackSize==2) enemyHP-=2;
+    //if (attackSize==3) enemyHP-=3;
 
     AttackGif = true;
     isCharging = false;
@@ -76,11 +77,11 @@ void checkTypedSentence() {
     screenShakeFrames = 12;
 
 
-    if (enemyHP <= 0) {
-      enemyHP = 0;
-      win = true;
-      return;
-    }
+    //if (enemyHP <= 0) {
+    //  enemyHP = 0;
+    //  win = true;
+    //  return;
+    //}
 
     gameScreen = 1;
 

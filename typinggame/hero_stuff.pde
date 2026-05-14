@@ -16,6 +16,10 @@ void drawHero(float x, float y) {
     if (myTime + 0.75*1000 < millis()) { //waits a bit then exits else-if block
       EnemyGotAttacked = true; //triggers enemy hurt animation (the red stuff and screen shake) after wizard finishes attack animation
       myHurtTime = millis();
+      if (attackSize==1) enemyHP-=1;
+    if (attackSize==2) enemyHP-=2;
+    if (attackSize==3) enemyHP-=3;
+   
       AttackGif = false; // exits attack gif block
       }
     }
@@ -32,11 +36,12 @@ void drawHero(float x, float y) {
 
 
  
-  if (HeroGotAttacked) {           //need to fix this! not sure why enemy is shaking and not the hero. also no ellipse??????????
-
+  if (HeroGotAttacked) {           
+      popMatrix();
+      pushMatrix();
     if (screenShakeFrames > 0) {
       fill(255, 0, 0, 50);
-      ellipse(0, 175, 200, 300);
+      ellipse(310, 330, 200, 300);
     }
     popMatrix();
     if (screenShakeFrames > 0) screenShakeFrames--;
@@ -62,19 +67,19 @@ void drawHero(float x, float y) {
 
 
 void heroDamaged() {
-  if (attackSize==1) playerHP-=1;
-  if (attackSize==2 || attackSize==3) playerHP-=2;
+  //if (attackSize==1) playerHP-=1;
+  //if (attackSize==2 || attackSize==3) playerHP-=2;
   flashFrames = 12;
   screenShakeFrames = 12;
   
   //HeroGotAttacked = true;
   //myHurtTime = millis();
 
-  if (playerHP <= 0) {
-    playerHP = 0;
-    gameOver = true;
-    return;
-  }
+  //if (playerHP <= 0) {
+  //  playerHP = 0;
+  //  gameOver = true;
+  //  return;
+  //}
 
 
   gameScreen = 1;
