@@ -13,7 +13,7 @@ void drawHero(float x, float y) {
     image(heroAttackGif, 0, 0);
     heroAttackGif.play();
     
-    if (myHeroAttackTime + 0.70*1000 < millis()) { //waits a bit then exits else-if block
+    if (myHeroAttackTime + 0.6*1000 < millis()) { //waits a bit then exits else-if block
       EnemyGotAttacked = true; //triggers enemy hurt animation (the red stuff and screen shake) after wizard finishes attack animation
       myEnemyHurtTime = millis();
       if (attackSize==1) enemyHP-=1;
@@ -27,7 +27,7 @@ void drawHero(float x, float y) {
   else if (isCharging) {
     image(heroChargeGif, 0, 0); //plays wizard charging gif
     heroChargeGif.play();
-    if (myChargeTime + 0.55*1000 < millis()) {
+    if (myChargeTime + 0.7*1000 < millis()) {
       heroChargeGif.pause(); //pauses gif so it doesn't keep looping
     }
   }

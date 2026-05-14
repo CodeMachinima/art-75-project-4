@@ -47,6 +47,7 @@ int gameScreen = 0; // the variable we use to change from intro screen to fight 
 int attackSize = 0; // the variable we use to choose sentence length based on attack power (small, medium, large attack)
 
 void setup() {
+  pixelDensity(2);
   size(1280, 800);
   smooth(4);
   frameRate(60);
@@ -57,8 +58,10 @@ void setup() {
   initializeSentences();
   //nextSentence();
   heroImage = loadImage("hero_default.png");
-  heroAttackGif = new Gif(this, "hero_attack.gif");
-  heroChargeGif = new Gif(this, "hero_charge.gif");
+  //heroAttackGif = new Gif(this, "hero_attack.gif");
+  //heroChargeGif = new Gif(this, "hero_charge.gif");
+  heroAttackGif = new Gif(this, "attack.gif");
+  heroChargeGif = new Gif(this, "charge.gif");
   enemyImage = loadImage("enemy_default.PNG");
   enemyChargeGif = new Gif(this, "enemy_charge.gif"); 
   enemyAttackGif = new Gif(this, "enemy_attack.gif");
