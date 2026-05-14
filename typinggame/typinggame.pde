@@ -16,7 +16,7 @@ String typedText = "";
 int roundTimeMax = 12 * 60; // 12 seconds at 60 FPS <-- depending on how fast ur computer is, THE TIME WILL BE FASTER OR SLOWER
 int roundTime = roundTimeMax;
 
-int playerHP = 5;
+int playerHP = 1;
 int playerMaxHP = 5;
 int enemyHP = 8;
 int enemyMaxHP = 8;
@@ -33,13 +33,11 @@ PFont otherFont;
 PFont descFont;
 
 PImage heroImage;
-PImage heroDamage;
 Gif heroAttackGif;
 Gif heroChargeGif;
 Gif enemyChargeGif;
 Gif enemyAttackGif;
 PImage enemyImage;
-PImage enemyDamage;
 PImage startScreenBG;
 PImage attackBG;
 PImage attackButtons;
@@ -59,13 +57,11 @@ void setup() {
   initializeSentences();
   //nextSentence();
   heroImage = loadImage("hero_default.png");
-  heroDamage = loadImage("sprite2.png");
   heroAttackGif = new Gif(this, "hero_attack.gif");
   heroChargeGif = new Gif(this, "hero_charge.gif");
   enemyImage = loadImage("enemy_default.PNG");
   enemyChargeGif = new Gif(this, "enemy_charge.gif"); 
   enemyAttackGif = new Gif(this, "enemy_attack.gif");
-  enemyDamage = loadImage("sprite4.png");
   startScreenBG = loadImage("startScreenBG.PNG");
   attackBG = loadImage("attackBG.PNG");
   attackButtons = loadImage("attackButtons.PNG");
@@ -333,7 +329,7 @@ void drawEndOverlay() {
   } else {
     text("GAME OVER", width/2, height/2 - 40);
     textSize(24);
-    text("The hero was damaged too many times.", width/2, height/2 + 10);
+    text("The wizard was damaged too many times.", width/2, height/2 + 10);
   }
 
   textSize(22);

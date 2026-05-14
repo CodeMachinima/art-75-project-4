@@ -1,8 +1,11 @@
 boolean AttackGif = false;
 boolean EnemyAttackGif = false;
-int myTime = 0;
+//int myTime = 0;
+int myHeroAttackTime = 0;
+int myEnemyAttackTime = 0;
 int myChargeTime = 0;
-int myHurtTime = 0;
+int myHeroHurtTime = 0;
+int myEnemyHurtTime = 0;
 
 // need to implement enemy animation and fix hero hurt animation
 
@@ -18,9 +21,9 @@ void drawEnemy(float x, float y) {
   if(EnemyAttackGif){
     image(enemyAttackGif, 0, 0); // add enemy attack
     enemyAttackGif.play();
-    if (myTime + 0.75*1000 < millis()) { //waits a bit then exits else-if block
+    if (myEnemyAttackTime + 0.7*1000 < millis()) { //waits a bit then exits else-if block
       HeroGotAttacked = true; 
-      myHurtTime = millis();
+      myHeroHurtTime = millis();
         if (attackSize==1) playerHP-=1;
   if (attackSize==2 || attackSize==3) playerHP-=2;
       EnemyAttackGif = false; // exits attack gif block
@@ -30,7 +33,7 @@ void drawEnemy(float x, float y) {
     else if (isCharging){
       image(enemyChargeGif, 0, 0);
       enemyChargeGif.play();
-      if (myChargeTime + 0.8*1000 < millis()) {
+      if (myChargeTime + 0.825*1000 < millis()) {
       enemyChargeGif.pause();
       }
     }
@@ -53,7 +56,7 @@ void drawEnemy(float x, float y) {
 
     }
     translate(shakeX, shakeY);
-    if (myHurtTime + 1*1000 < millis()) {
+    if (myEnemyHurtTime + 1*1000 < millis()) {
       EnemyGotAttacked = false;
       
     }
@@ -69,10 +72,10 @@ void checkTypedSentence() {
     //if (attackSize==1) enemyHP-=1;
     //if (attackSize==2) enemyHP-=2;
     //if (attackSize==3) enemyHP-=3;
-
+    heroAttackGif.jump(0);
     AttackGif = true;
     isCharging = false;
-    myTime = millis();
+    myHeroAttackTime = millis();
     successFrames = 12;
     screenShakeFrames = 12;
 

@@ -13,6 +13,8 @@ void mousePressed() {
       nextSentence(1);
       gameScreen = 2;
       isCharging = true;
+      enemyChargeGif.jump(0);
+      heroChargeGif.jump(0);
       myChargeTime = millis();
     }
 
@@ -21,6 +23,8 @@ void mousePressed() {
       nextSentence(2);
       gameScreen = 2;
       isCharging = true;
+      enemyChargeGif.jump(0);
+      heroChargeGif.jump(0);
       myChargeTime = millis();
     }
 
@@ -29,6 +33,8 @@ void mousePressed() {
       nextSentence(3);
       gameScreen = 2;
       isCharging = true;
+      enemyChargeGif.jump(0);
+      heroChargeGif.jump(0);
       myChargeTime = millis();
     }
   }

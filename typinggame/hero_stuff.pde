@@ -13,9 +13,9 @@ void drawHero(float x, float y) {
     image(heroAttackGif, 0, 0);
     heroAttackGif.play();
     
-    if (myTime + 0.75*1000 < millis()) { //waits a bit then exits else-if block
+    if (myHeroAttackTime + 0.70*1000 < millis()) { //waits a bit then exits else-if block
       EnemyGotAttacked = true; //triggers enemy hurt animation (the red stuff and screen shake) after wizard finishes attack animation
-      myHurtTime = millis();
+      myEnemyHurtTime = millis();
       if (attackSize==1) enemyHP-=1;
     if (attackSize==2) enemyHP-=2;
     if (attackSize==3) enemyHP-=3;
@@ -53,7 +53,7 @@ void drawHero(float x, float y) {
       shakeY = random(-8, 8);
     }
     translate(shakeX, shakeY);
-    if (myHurtTime + 1*1000 < millis()) {
+    if (myHeroHurtTime + 1*1000 < millis()) {
       HeroGotAttacked = false;
       
     }

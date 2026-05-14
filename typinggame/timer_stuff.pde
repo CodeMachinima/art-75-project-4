@@ -3,8 +3,9 @@ void updateTimers() {
   if (!gameOver && !win) {
     roundTime--;
     if (roundTime <= 0) {
+      enemyAttackGif.jump(0);
       EnemyAttackGif = true;
-      myTime = millis();
+      myEnemyAttackTime = millis();
       heroDamaged();
     }
   }
