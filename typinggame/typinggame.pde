@@ -16,7 +16,7 @@ String typedText = "";
 int roundTimeMax = 12 * 60; // 12 seconds at 60 FPS <-- depending on how fast ur computer is, THE TIME WILL BE FASTER OR SLOWER
 int roundTime = roundTimeMax;
 
-int playerHP = 1;
+int playerHP = 5;
 int playerMaxHP = 5;
 int enemyHP = 8;
 int enemyMaxHP = 8;
